@@ -1,0 +1,23 @@
+{
+    "name": "BookingPrice",
+    "fields": [
+        {
+            "fieldName": "bookingPrice",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "effectiveDate",
+            "fieldType": "Instant"
+        }
+    ],
+    "relationships": [],
+    "changelogDate": "20190326125150",
+    "entityTableName": "booking_price",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

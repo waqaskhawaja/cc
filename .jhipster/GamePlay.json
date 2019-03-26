@@ -1,0 +1,43 @@
+{
+    "name": "GamePlay",
+    "fields": [
+        {
+            "fieldName": "gamePlaySlot",
+            "fieldType": "Instant"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "court",
+            "otherEntityRelationshipName": "gamePlay",
+            "relationshipName": "court",
+            "otherEntityField": "number"
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityName": "user",
+            "otherEntityRelationshipName": "played",
+            "relationshipName": "played",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityName": "user",
+            "otherEntityRelationshipName": "booked",
+            "relationshipName": "booked",
+            "otherEntityField": "id",
+            "ownerSide": true
+        }
+    ],
+    "changelogDate": "20190326125151",
+    "entityTableName": "game_play",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

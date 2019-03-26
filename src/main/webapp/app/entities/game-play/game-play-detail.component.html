@@ -1,0 +1,45 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="gamePlay">
+            <h2><span>Game Play</span> {{gamePlay.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Game Play Slot</span></dt>
+                <dd>
+                    <span>{{gamePlay.gamePlaySlot}}</span>
+                </dd>
+                <dt><span>Court</span></dt>
+                <dd>
+                    <div *ngIf="gamePlay.court">
+                        <a [routerLink]="['/court', gamePlay.court?.id, 'view']">{{gamePlay.court?.number}}</a>
+                    </div>
+                </dd>
+                <dt><span>Played</span></dt>
+                <dd>
+                    <span *ngFor="let played of gamePlay.playeds; let last = last">
+                        {{played.id}}{{last ? '' : ', '}}
+                    </span>
+                </dd>
+                <dt><span>Booked</span></dt>
+                <dd>
+                    <span *ngFor="let booked of gamePlay.bookeds; let last = last">
+                        {{booked.id}}{{last ? '' : ', '}}
+                    </span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/game-play', gamePlay.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

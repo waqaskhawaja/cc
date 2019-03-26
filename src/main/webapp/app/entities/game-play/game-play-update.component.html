@@ -1,0 +1,50 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-game-play-heading">Create or edit a Game Play</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!gamePlay.id">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="gamePlay.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_gamePlaySlot">Game Play Slot</label>
+                    <div class="d-flex">
+                        <input id="field_gamePlaySlot" type="datetime-local" class="form-control" name="gamePlaySlot" [(ngModel)]="gamePlaySlot" placeholder="YYYY-MM-DD HH:mm"
+                        />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_court">Court</label>
+                    <select class="form-control" id="field_court" name="court" [(ngModel)]="gamePlay.court" >
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="courtOption.id === gamePlay.court?.id ? gamePlay.court : courtOption" *ngFor="let courtOption of courts; trackBy: trackCourtById">{{courtOption.number}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="field_played">Played</label>
+                    <select class="form-control" id="field_played" multiple name="played" [(ngModel)]="gamePlay.playeds">
+                        <option [ngValue]="getSelected(gamePlay.playeds, userOption)" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="field_booked">Booked</label>
+                    <select class="form-control" id="field_booked" multiple name="booked" [(ngModel)]="gamePlay.bookeds">
+                        <option [ngValue]="getSelected(gamePlay.bookeds, userOption)" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

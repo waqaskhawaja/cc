@@ -1,0 +1,19 @@
+{
+    "name": "Court",
+    "fields": [
+        {
+            "fieldName": "number",
+            "fieldType": "Integer"
+        }
+    ],
+    "relationships": [],
+    "changelogDate": "20190326125149",
+    "entityTableName": "court",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

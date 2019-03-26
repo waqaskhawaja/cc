@@ -1,0 +1,72 @@
+<div>
+    <h2 id="page-heading">
+        <span>Game Plays</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-game-play" [routerLink]="['/game-play/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span >
+            Create new Game Play
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="gamePlays">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Game Play Slot</span></th>
+            <th><span>Court</span></th>
+            <th><span>Played</span></th>
+            <th><span>Booked</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let gamePlay of gamePlays ;trackBy: trackId">
+                <td><a [routerLink]="['/game-play', gamePlay.id, 'view' ]">{{gamePlay.id}}</a></td>
+                <td>{{gamePlay.gamePlaySlot | date:'medium'}}</td>
+                <td>
+                    <div *ngIf="gamePlay.court">
+                        <a [routerLink]="['../court', gamePlay.court?.id, 'view' ]" >{{gamePlay.court?.number}}</a>
+                    </div>
+                </td>
+                <td>
+                    <span *ngFor="let played of gamePlay.playeds; let last = last">
+                            {{played.id}}{{last ? '' : ', '}}
+                        </span>
+                </td>
+                <td>
+                    <span *ngFor="let booked of gamePlay.bookeds; let last = last">
+                            {{booked.id}}{{last ? '' : ', '}}
+                        </span>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/game-play', gamePlay.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/game-play', gamePlay.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', 'game-play', { outlets: { popup: gamePlay.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

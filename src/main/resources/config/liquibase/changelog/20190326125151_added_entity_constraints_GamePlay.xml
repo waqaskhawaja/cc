@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity GamePlay.
+    -->
+    <changeSet id="20190326125151-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="court_id"
+                                 baseTableName="game_play"
+                                 constraintName="fk_game_play_court_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="court"/>
+
+        <addForeignKeyConstraint baseColumnNames="game_play_id"
+                                 baseTableName="game_play_played"
+                                 constraintName="fk_game_play_played_game_play_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="game_play"/>
+        <addForeignKeyConstraint baseColumnNames="played_id"
+                                 baseTableName="game_play_played"
+                                 constraintName="fk_game_play_played_played_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="jhi_user"/>
+        
+        <addForeignKeyConstraint baseColumnNames="game_play_id"
+                                 baseTableName="game_play_booked"
+                                 constraintName="fk_game_play_booked_game_play_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="game_play"/>
+        <addForeignKeyConstraint baseColumnNames="booked_id"
+                                 baseTableName="game_play_booked"
+                                 constraintName="fk_game_play_booked_booked_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="jhi_user"/>
+        
+    </changeSet>
+</databaseChangeLog>

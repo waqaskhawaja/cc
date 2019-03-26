@@ -1,0 +1,24 @@
+entity Court{
+	number Integer
+}
+
+entity BookingPrice{
+	bookingPrice Integer,
+  effectiveDate Instant
+}
+
+entity GamePlay{
+	gamePlaySlot Instant
+}
+
+relationship ManyToOne{
+  GamePlay{court(number)} to Court
+}
+
+relationship ManyToMany{
+  GamePlay{played} to User{played}
+}
+
+relationship ManyToMany{
+  GamePlay{booked} to User{booked}
+}
