@@ -94,6 +94,16 @@ export class GamePlayUpdateComponent implements OnInit {
         return item.id;
     }
 
+    getUserFullName(item: IUser) {
+        if (item.firstName && item.lastName) {
+            return item.firstName + ' ' + item.lastName;
+        } else if (item.firstName) {
+            return item.firstName;
+        } else {
+            return item.login;
+        }
+    }
+
     getSelected(selectedVals: Array<any>, option: any) {
         if (selectedVals) {
             for (let i = 0; i < selectedVals.length; i++) {

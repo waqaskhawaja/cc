@@ -1,0 +1,167 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet author="waqas (generated)" id="1553612902788-1">
+        <createSequence sequenceName="hibernate_sequence"/>
+    </changeSet>
+    <changeSet author="waqas (generated)" id="1553612902788-2">
+        <createTable tableName="booking_price">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="booking_pricePK"/>
+            </column>
+            <column name="booking_price" type="INT"/>
+            <column name="effective_date" type="BINARY(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="waqas (generated)" id="1553612902788-3">
+        <createTable tableName="court">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="courtPK"/>
+            </column>
+            <column name="jhi_number" type="INT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="waqas (generated)" id="1553612902788-4">
+        <createTable tableName="game_play">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="game_playPK"/>
+            </column>
+            <column name="game_play_slot" type="BINARY(255)"/>
+            <column name="court_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="waqas (generated)" id="1553612902788-5">
+        <createTable tableName="game_play_booked">
+            <column name="game_play_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="booked_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="waqas (generated)" id="1553612902788-6">
+        <createTable tableName="game_play_played">
+            <column name="game_play_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="played_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="waqas (generated)" id="1553612902788-7">
+        <createTable tableName="jhi_authority">
+            <column name="name" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="waqas (generated)" id="1553612902788-8">
+        <createTable tableName="jhi_persistent_audit_event">
+            <column autoIncrement="true" name="event_id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="jhi_persistent_audit_eventPK"/>
+            </column>
+            <column name="event_date" type="BINARY(255)"/>
+            <column name="event_type" type="VARCHAR(255)"/>
+            <column name="principal" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="waqas (generated)" id="1553612902788-9">
+        <createTable tableName="jhi_persistent_audit_evt_data">
+            <column name="event_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="value" type="VARCHAR(255)"/>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="waqas (generated)" id="1553612902788-10">
+        <createTable tableName="jhi_user">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="jhi_userPK"/>
+            </column>
+            <column name="created_by" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_date" type="BINARY(255)"/>
+            <column name="last_modified_by" type="VARCHAR(50)"/>
+            <column name="last_modified_date" type="BINARY(255)"/>
+            <column name="activated" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+            <column name="activation_key" type="VARCHAR(20)"/>
+            <column name="email" type="VARCHAR(254)"/>
+            <column name="first_name" type="VARCHAR(50)"/>
+            <column name="image_url" type="VARCHAR(256)"/>
+            <column name="lang_key" type="VARCHAR(6)"/>
+            <column name="last_name" type="VARCHAR(50)"/>
+            <column name="login" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="password_hash" type="VARCHAR(60)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="reset_date" type="BINARY(255)"/>
+            <column name="reset_key" type="VARCHAR(20)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="waqas (generated)" id="1553612902788-11">
+        <createTable tableName="jhi_user_authority">
+            <column name="user_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="authority_name" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="waqas (generated)" id="1553612902788-12">
+        <addPrimaryKey columnNames="game_play_id, booked_id" tableName="game_play_booked"/>
+    </changeSet>
+    <changeSet author="waqas (generated)" id="1553612902788-13">
+        <addPrimaryKey columnNames="game_play_id, played_id" tableName="game_play_played"/>
+    </changeSet>
+    <changeSet author="waqas (generated)" id="1553612902788-14">
+        <addPrimaryKey columnNames="event_id, name" tableName="jhi_persistent_audit_evt_data"/>
+    </changeSet>
+    <changeSet author="waqas (generated)" id="1553612902788-15">
+        <addPrimaryKey columnNames="user_id, authority_name" tableName="jhi_user_authority"/>
+    </changeSet>
+    <changeSet author="waqas (generated)" id="1553612902788-16">
+        <addPrimaryKey columnNames="name" constraintName="jhi_authorityPK" tableName="jhi_authority"/>
+    </changeSet>
+    <changeSet author="waqas (generated)" id="1553612902788-17">
+        <addUniqueConstraint columnNames="email" constraintName="UC_JHI_USEREMAIL_COL" tableName="jhi_user"/>
+    </changeSet>
+    <changeSet author="waqas (generated)" id="1553612902788-18">
+        <addUniqueConstraint columnNames="login" constraintName="UC_JHI_USERLOGIN_COL" tableName="jhi_user"/>
+    </changeSet>
+    <changeSet author="waqas (generated)" id="1553612902788-19">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="jhi_user_authority" constraintName="FK290okww5jujghp4el5i7mgwu0" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"/>
+    </changeSet>
+    <changeSet author="waqas (generated)" id="1553612902788-20">
+        <addForeignKeyConstraint baseColumnNames="event_id" baseTableName="jhi_persistent_audit_evt_data" constraintName="FK2ehnyx2si4tjd2nt4q7y40v8m" deferrable="false" initiallyDeferred="false" referencedColumnNames="event_id" referencedTableName="jhi_persistent_audit_event"/>
+    </changeSet>
+    <changeSet author="waqas (generated)" id="1553612902788-21">
+        <addForeignKeyConstraint baseColumnNames="authority_name" baseTableName="jhi_user_authority" constraintName="FK4psxl0jtx6nr7rhqbynr6itoc" deferrable="false" initiallyDeferred="false" referencedColumnNames="name" referencedTableName="jhi_authority"/>
+    </changeSet>
+    <changeSet author="waqas (generated)" id="1553612902788-22">
+        <addForeignKeyConstraint baseColumnNames="played_id" baseTableName="game_play_played" constraintName="FK5xj634mof74a7fklc46csv6bj" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"/>
+    </changeSet>
+    <changeSet author="waqas (generated)" id="1553612902788-23">
+        <addForeignKeyConstraint baseColumnNames="court_id" baseTableName="game_play" constraintName="FKddn2hj5kvqpcj9o6nutlvi85g" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="court"/>
+    </changeSet>
+    <changeSet author="waqas (generated)" id="1553612902788-24">
+        <addForeignKeyConstraint baseColumnNames="game_play_id" baseTableName="game_play_booked" constraintName="FKlxp4tt8c5fnx5ueqh076cfnrb" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="game_play"/>
+    </changeSet>
+    <changeSet author="waqas (generated)" id="1553612902788-25">
+        <addForeignKeyConstraint baseColumnNames="booked_id" baseTableName="game_play_booked" constraintName="FKql6dd78g12opncy4yxewom470" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="jhi_user"/>
+    </changeSet>
+    <changeSet author="waqas (generated)" id="1553612902788-26">
+        <addForeignKeyConstraint baseColumnNames="game_play_id" baseTableName="game_play_played" constraintName="FKs089raoufabrjrsx2yd871bl4" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="game_play"/>
+    </changeSet>
+</databaseChangeLog>

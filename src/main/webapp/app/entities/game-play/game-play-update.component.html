@@ -27,13 +27,13 @@
                 <div class="form-group">
                     <label for="field_played">Played</label>
                     <select class="form-control" id="field_played" multiple name="played" [(ngModel)]="gamePlay.playeds">
-                        <option [ngValue]="getSelected(gamePlay.playeds, userOption)" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.id}}</option>
+                        <option [ngValue]="getSelected(gamePlay.playeds, userOption)" *ngFor="let userOption of users; trackBy: trackUserById">{{getUserFullName(userOption)}}</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label for="field_booked">Booked</label>
                     <select class="form-control" id="field_booked" multiple name="booked" [(ngModel)]="gamePlay.bookeds">
-                        <option [ngValue]="getSelected(gamePlay.bookeds, userOption)" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.id}}</option>
+                        <option [ngValue]="getSelected(gamePlay.bookeds, userOption)" *ngFor="let userOption of users; trackBy: trackUserById">{{getUserFullName(userOption)}}</option>
                     </select>
                 </div>
             </div>

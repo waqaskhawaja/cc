@@ -1,0 +1,64 @@
+<div>
+    <h2 id="page-heading">
+        <span>Payments</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-payment" [routerLink]="['/payment/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span >
+            Create new Payment
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="payments">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Payment Date</span></th>
+            <th><span>Amount</span></th>
+            <th><span>Sender</span></th>
+            <th><span>Recipient</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let payment of payments ;trackBy: trackId">
+                <td><a [routerLink]="['/payment', payment.id, 'view' ]">{{payment.id}}</a></td>
+                <td>{{payment.paymentDate | date:'medium'}}</td>
+                <td>{{payment.amount}}</td>
+                <td>
+                    {{payment.sender?.id}}
+                </td>
+                <td>
+                    {{payment.recipient?.id}}
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['/payment', payment.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/payment', payment.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', 'payment', { outlets: { popup: payment.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,5 +1,15 @@
+entity Item{
+  name String
+}
+
 entity Court{
 	number Integer
+}
+
+entity Purchase{
+  purchaseDate Instant,
+  price BigDecimal,
+  attachment Blob
 }
 
 entity BookingPrice{
@@ -11,8 +21,21 @@ entity GamePlay{
 	gamePlaySlot Instant
 }
 
+entity Payment{
+  paymentDate Instant,
+  amount BigDecimal
+}
+
 relationship ManyToOne{
   GamePlay{court(number)} to Court
+}
+
+relationship ManyToOne{
+    Payment{sender} to User
+}
+
+relationship ManyToOne{
+    Payment{recipient} to User
 }
 
 relationship ManyToMany{

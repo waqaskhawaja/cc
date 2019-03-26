@@ -1,0 +1,54 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-purchase-heading">Create or edit a Purchase</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!purchase.id">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="purchase.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_purchaseDate">Purchase Date</label>
+                    <div class="d-flex">
+                        <input id="field_purchaseDate" type="datetime-local" class="form-control" name="purchaseDate" [(ngModel)]="purchaseDate" placeholder="YYYY-MM-DD HH:mm"
+                        />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_price">Price</label>
+                    <input type="number" class="form-control" name="price" id="field_price"
+                        [(ngModel)]="purchase.price" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_attachment">Attachment</label>
+                    <div>
+                        <div *ngIf="purchase.attachment" class="form-text text-danger clearfix">
+                            <a class="pull-left" (click)="openFile(purchase.attachmentContentType, purchase.attachment)">open</a><br>
+                            <span class="pull-left">{{purchase.attachmentContentType}}, {{byteSize(purchase.attachment)}}</span>
+                            <button type="button" (click)="purchase.attachment=null;purchase.attachmentContentType=null;"
+                                    class="btn btn-secondary btn-xs pull-right">
+                                <fa-icon [icon]="'times'"></fa-icon>
+                            </button>
+                        </div>
+                        <input type="file" id="file_attachment" (change)="setFileData($event, purchase, 'attachment', false)"/>
+                    </div>
+                    <input type="hidden" class="form-control" name="attachment" id="field_attachment"
+                        [(ngModel)]="purchase.attachment" />
+                    <input type="hidden" class="form-control" name="attachmentContentType" id="field_attachmentContentType"
+                        [(ngModel)]="purchase.attachmentContentType" />
+                </div>
+
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

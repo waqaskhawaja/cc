@@ -31,6 +31,18 @@ import { RouterModule } from '@angular/router';
             {
                 path: 'game-play',
                 loadChildren: './game-play/game-play.module#CcGamePlayModule'
+            },
+            {
+                path: 'item',
+                loadChildren: './item/item.module#CcItemModule'
+            },
+            {
+                path: 'purchase',
+                loadChildren: './purchase/purchase.module#CcPurchaseModule'
+            },
+            {
+                path: 'payment',
+                loadChildren: './payment/payment.module#CcPaymentModule'
             }
             /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
         ])
